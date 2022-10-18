@@ -4,7 +4,7 @@ import { fetchCompanies } from "../../../features/companiesSlice";
 import RenderCompanies from "../RenderCompanies/RenderCompanies";
 import styles from "./Companies.module.scss";
 
-const Companies = ({ value }) => {
+const Companies = ({ value, itemClickHandler }) => {
   const companies = useSelector((state) => state.companies);
   const loader = useSelector((state) => state.loader);
   const dispatch = useDispatch();
@@ -26,7 +26,14 @@ const Companies = ({ value }) => {
         {loader ? <div className={styles.loader}>Идет загрузка...</div> : null}
         {companiesFilt.length && !loader ? (
           companiesFilt.map((item, index) => {
-            return <RenderCompanies key={index} item={item} />;
+            return (
+              <RenderCompanies
+                key={index}
+                item={item}
+                itemClickHandler={itemClickHandler}
+
+              />
+            );
           })
         ) : (
           <div className={styles.loader}>Ничего нет(</div>

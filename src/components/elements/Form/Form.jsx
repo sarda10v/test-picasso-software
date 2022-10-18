@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 
 const Form = () => {
   const [value, setValue] = useState("");
+  const [isOpen, setIsOpen] = useState(true);
 
   const companies = useSelector((state) => state.companies);
   const companiesFilt = companies.filter((item) => {
@@ -14,6 +15,15 @@ const Form = () => {
     );
   });
 
+  const itemClickHandler = (e) => {
+    setValue(e.target.textContent);
+    setIsOpen(!isOpen);
+  };
+
+  const inputClickHandler = () => {
+    setIsOpen(true);
+  };
+
   return (
     <div className={styles.root}>
       <div className={styles.wrapper}>
@@ -22,13 +32,19 @@ const Form = () => {
           <input
             type="text"
             value={value}
+            placeholder="Search in the company..."
             onChange={(e) => setValue(e.target.value)}
+            onClick={inputClickHandler}
           />
           <ul className={styles.autocomplete}>
-            {value
+            {value && isOpen
               ? companiesFilt.map((company, index) => {
                   return (
-                    <li key={index} className={styles.autocompleteItem}>
+                    <li
+                      key={index}
+                      className={styles.autocompleteItem}
+                      onClick={itemClickHandler}
+                    >
                       {company.name}
                     </li>
                   );
@@ -36,7 +52,11 @@ const Form = () => {
               : null}
           </ul>
         </form>
-        <Companies value={value} setValue={setValue} />
+        <Companies
+          value={value}
+          setValue={setValue}
+          itemClickHandler={itemClickHandler}
+        />
       </div>
     </div>
   );
