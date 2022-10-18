@@ -24,7 +24,7 @@ const Companies = ({ value }) => {
     <div className={styles.wrapperContent}>
       <ul>
         {loader ? <div className={styles.loader}>Идет загрузка...</div> : null}
-        {companiesFilt.length ? (
+        {companiesFilt.length && !loader ? (
           companiesFilt.map((item, index) => {
             return <RenderCompanies key={index} item={item} />;
           })

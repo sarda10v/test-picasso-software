@@ -28,13 +28,13 @@ export const companiesSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-    .addCase(fetchCompanies.fulfilled, (state, action) => {
-      state.loader = false;
-      state.companies = action.payload;
-    })
-    .addCase(fetchCompanies.pending, (state, action) => {
-      state.loader = true;
-    })
+      .addCase(fetchCompanies.fulfilled, (state, action) => {
+        state.loader = false;
+        state.companies = action.payload;
+      })
+      .addCase(fetchCompanies.pending, (state, action) => {
+        state.loader = true;
+      });
   },
 });
 

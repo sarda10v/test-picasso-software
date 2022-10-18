@@ -3,7 +3,7 @@ li {
   display: flex;
   gap: 14px;
   transition: all 250ms;
-    margin: 5px 0;
+  margin: 5px 0;
 
   .imgSize {
     width: 54px;
@@ -13,6 +13,7 @@ li {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      cursor: pointer;
     }
   }
   .titleAndDomain {
@@ -21,21 +22,15 @@ li {
     .title {
       font-size: 14px;
       line-height: 16px;
+      cursor: pointer;
     }
     .domain {
       font-size: 12px;
       line-height: 14px;
       color: #9f9f9f;
       margin-top: 4px;
+      cursor: pointer;
     }
   }
-
-  // &:nth-child(even) {
-  //   margin: 5px 0;
-  // }
-  &:hover {
-    cursor: pointer;
-    // opacity: 0.9;
-    // transform: scale(0.96);
-  }
+  
 }
